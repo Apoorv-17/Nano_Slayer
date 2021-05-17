@@ -4,48 +4,57 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 10.0f;         // movement speed of player
     public float crouchedMoveSpeed = 5.0f;  // movement speed when crouched
-    public float jumpHeight = 10.0f;        // jump force of the player
+    public float jumpHeight = 5.0f;        // jump force of the player
 
-    public Transform groundCheck;           // to check if player's feet is touching ground
-    public LayerMask groundLayer;           // what is ground
     public int extraJumps;                  // number of allowed extra jumps
 
+    [Range (0.0f, 1.0f)]
+    public float wallSlidingSpeed;          // wall sliding speed
+
+    public Transform groundCheck;           // to check if player is touching ground
     public Transform cilingCheck;           // to check if player under a ciling
 
-    public Animator animator;               // player animator 
+    public Transform frontCheck;            // to check if player is grabbing a wall
+    public Transform rearCheck;
 
-    private Rigidbody2D _rigidBody;         // player rigidbody
-    public BoxCollider2D boxColloider;      // player box colloider
+    public LayerMask groundLayer;           // what is ground
+    public LayerMask wallLayer;             // what is wall
+
     public Transform firePoint;             // bullet fire-point
+
     public static bool facingRight = true;
+
+    private Animator animator;              // player animator 
+    private Rigidbody2D _rigidBody;         // player rigidbody
+    private BoxCollider2D boxColloider;     // player box colloider
+    
     private bool isGrounded;
-    private bool isJumping = false;
-    private int landed;
     private bool touchingCiling;
+    private bool isTouchingWall;
+
+    private bool wallSliding = false;
     private bool isCrouching = false;
+
     private int availableJumps;
 
     void Start()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        boxColloider = GetComponent<BoxCollider2D>();
     }
 
     void Update()
     {
+        // to make player slide from wall
+        if(wallSliding) {
+            _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, Mathf.Clamp(_rigidBody.velocity.y, wallSlidingSpeed, float.MaxValue));
+        }
+
         // reset jumps if player is grounded
         if(isGrounded)
         {
             availableJumps = extraJumps;
-
-            if(landed == 0) {
-                landed = 1;
-            }
-            else {
-                isJumping = false;
-                animator.SetBool("IsJumping", isJumping); // ends jumping animation
-                //Debug.Log("End");
-            }
-            
         }
             
         // jump
@@ -54,21 +63,21 @@ public class PlayerMovement : MonoBehaviour
             _rigidBody.AddForce(new Vector2(0f, jumpHeight), ForceMode2D.Impulse);
             availableJumps--;
 
-            isJumping = true;
-            landed = 0;
             animator.SetBool("IsJumping", true); // triggers jump animation
         }
         else if(Input.GetButtonDown("Jump") && availableJumps == 0 && isGrounded && !touchingCiling)
         {
             _rigidBody.AddForce(new Vector2(0f, jumpHeight), ForceMode2D.Impulse);
 
-            isJumping = true;
-            landed = 0;
             animator.SetBool("IsJumping", true); // triggers jump animation
+        }
+        if(_rigidBody.velocity.y == 0) 
+        {
+            animator.SetBool("IsJumping", false); // ends jumping animation
         }
 
         // crouch
-        if(Input.GetButtonDown("Crouch"))
+        if(Input.GetButtonDown("Crouch") && !wallSliding)
         {
             isCrouching = true;
 
@@ -79,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
             
             animator.SetBool("IsCrouching", true);
         }
-        else if((Input.GetButtonUp("Crouch") && !touchingCiling) || (!Input.GetButton("Crouch") && isCrouching && !touchingCiling))
+        else if((Input.GetButtonUp("Crouch") && !touchingCiling && isCrouching) || (!Input.GetButton("Crouch") && isCrouching && !touchingCiling))
         {
             isCrouching = false;
 
@@ -100,6 +109,57 @@ public class PlayerMovement : MonoBehaviour
         // check if the player's head is touching ciling
         touchingCiling = Physics2D.OverlapCircle(cilingCheck.position, 0.1f, groundLayer);
 
+        // check if the player is grabbing a wall
+        if(Physics2D.OverlapCircle(frontCheck.position, 0.1f, wallLayer)) {
+            Flip();
+            isTouchingWall = true;
+        }
+        else if(Physics2D.OverlapCircle(rearCheck.position, 0.1f, wallLayer)) {
+            isTouchingWall = true;
+        }  
+        else
+            isTouchingWall = false;
+
+        // check if wall sliding
+        if(isTouchingWall && !isGrounded) {
+            if(!wallSliding) {
+                if(facingRight)
+                    firePoint.position = new Vector2(firePoint.position.x + 0.03f, firePoint.position.y - 0.025f);
+
+                if(!facingRight)
+                    firePoint.position = new Vector2(firePoint.position.x - 0.03f, firePoint.position.y - 0.025f);
+            }
+
+            wallSliding = true;
+
+            boxColloider.size = new Vector2(0.17f, 0.32f);
+            boxColloider.offset = new Vector2(0.015f, -0.05f);
+
+            animator.SetBool("IsWallGrabbing", true);
+            animator.SetBool("IsJumping", false);
+        }
+        else {
+            if(wallSliding) {
+                if(facingRight)
+                    firePoint.position = new Vector2(firePoint.position.x - 0.03f, firePoint.position.y + 0.025f);
+
+                if(!facingRight)
+                    firePoint.position = new Vector2(firePoint.position.x + 0.03f, firePoint.position.y + 0.025f);
+            }
+
+            wallSliding = false;
+
+            boxColloider.size = new Vector2(0.14f, 0.37f);
+            boxColloider.offset = new Vector2(0.03f, -0.055f);
+
+            animator.SetBool("IsWallGrabbing", false);
+
+            if(!isGrounded) {
+                animator.SetBool("IsJumping", true);
+            }
+        }
+            
+
         // movement
         float moveHorizontal = Input.GetAxisRaw("Horizontal");
         if(!isCrouching)
@@ -113,7 +173,7 @@ public class PlayerMovement : MonoBehaviour
         }
         
         // flipping when necessary
-        if(!facingRight && moveHorizontal > 0 || facingRight && moveHorizontal < 0)
+        if(!facingRight && moveHorizontal > 0 && !wallSliding || facingRight && moveHorizontal < 0 && !wallSliding)
             Flip();
     }
     
