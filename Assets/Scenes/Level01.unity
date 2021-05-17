@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 335545830}
   - component: {fileID: 335545829}
   - component: {fileID: 335545831}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: stalactite (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -468,7 +468,7 @@ GameObject:
   - component: {fileID: 567755748}
   - component: {fileID: 567755747}
   - component: {fileID: 567755749}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: _unnel1b
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -577,7 +577,7 @@ GameObject:
   - component: {fileID: 595987187}
   - component: {fileID: 595987186}
   - component: {fileID: 595987188}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: stalactite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -686,7 +686,7 @@ GameObject:
   - component: {fileID: 661419393}
   - component: {fileID: 661419392}
   - component: {fileID: 661419394}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: stalactite (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -910,7 +910,7 @@ GameObject:
   - component: {fileID: 956873678}
   - component: {fileID: 956873677}
   - component: {fileID: 956873680}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: _ava1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1038,7 +1038,7 @@ GameObject:
   - component: {fileID: 1219618906}
   - component: {fileID: 1219618905}
   - component: {fileID: 1219618907}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: _unnel1a
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1312,11 +1312,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 516003464352889802, guid: 14491b86f05e4e742b1c5e83e542a941, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.313502
+      value: 8.245502
       objectReference: {fileID: 0}
     - target: {fileID: 516003464352889802, guid: 14491b86f05e4e742b1c5e83e542a941, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.77315223
+      value: 0.35115227
       objectReference: {fileID: 0}
     - target: {fileID: 516003464352889802, guid: 14491b86f05e4e742b1c5e83e542a941, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1438,11 +1438,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5524533528399091877, guid: 0cd6694ef4c5adb4cb4f86079f709c9c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.078
+      value: 7.01
       objectReference: {fileID: 0}
     - target: {fileID: 5524533528399091877, guid: 0cd6694ef4c5adb4cb4f86079f709c9c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.873
+      value: 0.451
       objectReference: {fileID: 0}
     - target: {fileID: 5524533528399091877, guid: 0cd6694ef4c5adb4cb4f86079f709c9c, type: 3}
       propertyPath: m_LocalPosition.z
