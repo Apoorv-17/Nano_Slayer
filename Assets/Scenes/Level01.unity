@@ -444,6 +444,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5524533528399091877, guid: 0cd6694ef4c5adb4cb4f86079f709c9c, type: 3}
   m_PrefabInstance: {fileID: 5524533528602369235}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &540509524
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 540509525}
+  m_Layer: 0
+  m_Name: Shotgun Place Holder
+  m_TagString: ShotgunPoint
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &540509525
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540509524}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.155, y: 0.026, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400737398}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &565999097
 GameObject:
   m_ObjectHideFlags: 0
@@ -2511,6 +2541,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2078472536
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2078472537}
+  m_Layer: 0
+  m_Name: Shotgun Fire Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2078472537
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078472536}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.283, y: 0.022, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400737398}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2114794697 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5968743142732287198, guid: 5e7ce391a42342e409457398e3405b26, type: 3}
@@ -2573,11 +2633,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 516003464352889802, guid: 14491b86f05e4e742b1c5e83e542a941, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.305502
+      value: 6.025502
       objectReference: {fileID: 0}
     - target: {fileID: 516003464352889802, guid: 14491b86f05e4e742b1c5e83e542a941, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.3301523
+      value: 0.43415228
       objectReference: {fileID: 0}
     - target: {fileID: 516003464352889802, guid: 14491b86f05e4e742b1c5e83e542a941, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2709,10 +2769,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5524533527487291415, guid: 0cd6694ef4c5adb4cb4f86079f709c9c, type: 3}
+      propertyPath: m_TagString
+      value: FirePoint
+      objectReference: {fileID: 0}
     - target: {fileID: 5524533528399091873, guid: 0cd6694ef4c5adb4cb4f86079f709c9c, type: 3}
       propertyPath: extraJumps
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5524533528399091873, guid: 0cd6694ef4c5adb4cb4f86079f709c9c, type: 3}
+      propertyPath: shotgunPoint
+      value: 
+      objectReference: {fileID: 540509525}
+    - target: {fileID: 5524533528399091873, guid: 0cd6694ef4c5adb4cb4f86079f709c9c, type: 3}
+      propertyPath: shotgunFirePoint
+      value: 
+      objectReference: {fileID: 2078472537}
     - target: {fileID: 5524533528399091874, guid: 0cd6694ef4c5adb4cb4f86079f709c9c, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2723,11 +2795,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5524533528399091877, guid: 0cd6694ef4c5adb4cb4f86079f709c9c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.07
+      value: 4.79
       objectReference: {fileID: 0}
     - target: {fileID: 5524533528399091877, guid: 0cd6694ef4c5adb4cb4f86079f709c9c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.43
+      value: 0.534
       objectReference: {fileID: 0}
     - target: {fileID: 5524533528399091877, guid: 0cd6694ef4c5adb4cb4f86079f709c9c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2765,6 +2837,22 @@ PrefabInstance:
       propertyPath: swordPrefab
       value: 
       objectReference: {fileID: 5222065692281784479, guid: 52f65693bd0614e4abf929dee5cc981d, type: 3}
+    - target: {fileID: 5524533528399091883, guid: 0cd6694ef4c5adb4cb4f86079f709c9c, type: 3}
+      propertyPath: ShotgunPoint
+      value: 
+      objectReference: {fileID: 540509525}
+    - target: {fileID: 5524533528399091883, guid: 0cd6694ef4c5adb4cb4f86079f709c9c, type: 3}
+      propertyPath: shotgunPrefab
+      value: 
+      objectReference: {fileID: 1562042015736076135, guid: 58002661e8fb1034d86076d27777dfde, type: 3}
+    - target: {fileID: 5524533528399091883, guid: 0cd6694ef4c5adb4cb4f86079f709c9c, type: 3}
+      propertyPath: ShotgunFirePoint
+      value: 
+      objectReference: {fileID: 2078472537}
+    - target: {fileID: 5524533528399091883, guid: 0cd6694ef4c5adb4cb4f86079f709c9c, type: 3}
+      propertyPath: machinegunPrefab
+      value: 
+      objectReference: {fileID: 5162012955792898323, guid: 3ecb00aa39504194ba586a8b86cd5c78, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0cd6694ef4c5adb4cb4f86079f709c9c, type: 3}
 --- !u!1001 &5968743142899742743
