@@ -9,28 +9,44 @@ public class Sword : MonoBehaviour
     public float speed =10;
     private Transform target;
     private Rigidbody2D _rigidbody;
+    private bool swordthrow = false;
 
     // Start is called before the first frame update
-    void Start()
+    public void SlashStart()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _rigidbody.position = _rigidbody.position + new Vector2(0.3f, 0);
         animator = GetComponent<Animator>();
         animator.SetTrigger("Sword_Cut");
-        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        target = GameObject.FindGameObjectWithTag("FirePoint").GetComponent<Transform>();
+    }
+    public void ThrowStart()
+    {
+        _rigidbody = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        animator.SetTrigger("Sword_Cut");
+        target = GameObject.FindGameObjectWithTag("FirePoint").GetComponent<Transform>();
+        swordthrow = true;
     }
     void Update()
     {
         Vector3 temp;
-        if(PlayerMovement.facingRight)
+        if (!swordthrow)
         {
-            temp = new Vector3(0.2f, 0, 0) + target.position;
+            if (PlayerMovement.facingRight)
+            {
+                temp = new Vector3(0.04f, 0, 0) + target.position;
+            }
+            else
+            {
+                temp = new Vector3(-0.04f, 0, 0) + target.position;
+            }
+            _rigidbody.position = Vector2.MoveTowards(_rigidbody.position, temp, speed * Time.deltaTime);
         }
         else
         {
-            temp = new Vector3(-0.2f, 0, 0) + target.position;
+            _rigidbody.velocity = transform.right * 3f;
         }
-        _rigidbody.position = Vector2.MoveTowards(_rigidbody.position, temp, speed * Time.deltaTime);
     }
     void OnTriggerEnter2D(Collider2D hitInfo)
     {

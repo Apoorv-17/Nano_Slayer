@@ -10,12 +10,24 @@ public class Bullet : MonoBehaviour
     
     private Rigidbody2D _rigidbody;
     
-    void Start()
+    public void FireStart(int i)
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
-        _rigidbody.velocity = transform.right * speed;  // give bullet const velocity
+        if (i == 1)
+        {
+            _rigidbody = GetComponent<Rigidbody2D>();
+            _rigidbody.velocity = transform.right * speed;  // give bullet const velocity
+        }
+        else if (i == 2)
+        {
+            _rigidbody = GetComponent<Rigidbody2D>();
+            _rigidbody.velocity = transform.right * speed + transform.up * speed;
+        }
+        else if (i == 3)
+        {
+            _rigidbody = GetComponent<Rigidbody2D>();
+            _rigidbody.velocity = transform.right * speed + -transform.up * speed;
+        }
     }
-
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
         // if bullet hits an enemy
