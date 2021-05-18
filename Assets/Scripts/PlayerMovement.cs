@@ -71,9 +71,10 @@ public class PlayerMovement : MonoBehaviour
 
             animator.SetBool("IsJumping", true); // triggers jump animation
         }
-        if(_rigidBody.velocity.y == 0) 
+        if(_rigidBody.velocity.y <= 0.01) 
         {
             animator.SetBool("IsJumping", false); // ends jumping animation
+            Debug.Log("jump");
         }
 
         // crouch
