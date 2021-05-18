@@ -2,12 +2,12 @@
 
 public class JumperAI : MonoBehaviour
 {
-    public float moveSpeed = 5.0f;
+    public float moveSpeed = 3.0f;
     public float crouchedMoveSpeed = 5.0f;
     public float speed = 5.0f;
     public float jumpForce = 10.0f;
     public float detectionRange = 1.0f;
-    public float timeLeft = 10.0f;
+    public float timeLeft = 15.0f;
 
     public Transform groundCheck;
     public LayerMask groundLayer;
@@ -46,7 +46,7 @@ public class JumperAI : MonoBehaviour
 
         if (_rigidBody.velocity.y < 0)
         {
-            timeLeft = 10.0f;
+            timeLeft = 15.0f;
         }
         if (_rigidBody.velocity.y <= 0)
         {
@@ -63,7 +63,7 @@ public class JumperAI : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
 
-    void jumpl()
+    void jumpr()
     {
         if (isGrounded)
         {
@@ -75,13 +75,13 @@ public class JumperAI : MonoBehaviour
 
     }
 
-    void jumpr()
+    void jumpl()
     {
         if (isGrounded)
         {
             float moveHorizontal = Input.GetAxisRaw("Horizontal");
             _rigidBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-            _rigidBody.velocity = new Vector2(-(moveHorizontal * moveSpeed * 2), _rigidBody.velocity.y);
+            _rigidBody.velocity = new Vector2(-(moveHorizontal * moveSpeed), _rigidBody.velocity.y);
             animator.SetBool("IsJumping", true);
         }
 
