@@ -69,7 +69,7 @@ public class JumperAI : MonoBehaviour
         {
             float moveHorizontal = Input.GetAxisRaw("Horizontal");
             _rigidBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-            _rigidBody.velocity = new Vector2(moveHorizontal * moveSpeed, _rigidBody.velocity.y);
+            _rigidBody.velocity = new Vector2(moveHorizontal * moveSpeed * (0.5f), _rigidBody.velocity.y);
             animator.SetBool("IsJumping", true);
         }
 
@@ -81,7 +81,7 @@ public class JumperAI : MonoBehaviour
         {
             float moveHorizontal = Input.GetAxisRaw("Horizontal");
             _rigidBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-            _rigidBody.velocity = new Vector2(-(moveHorizontal * moveSpeed), _rigidBody.velocity.y);
+            _rigidBody.velocity = new Vector2(-(moveHorizontal * moveSpeed * (0.5f)), _rigidBody.velocity.y);
             animator.SetBool("IsJumping", true);
         }
 
