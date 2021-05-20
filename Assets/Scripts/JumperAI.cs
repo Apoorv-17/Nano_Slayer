@@ -6,8 +6,8 @@ public class JumperAI : MonoBehaviour
     public float crouchedMoveSpeed = 5.0f;
     public float speed = 5.0f;
     public float jumpForce = 10.0f;
-    public float detectionRange = 1.0f;
-    public float timeLeft = 15.0f;
+    public float detectionRange = 3.0f;
+    public float timeLeft = 5.0f;
 
     public Transform groundCheck;
     public LayerMask groundLayer;
@@ -46,7 +46,7 @@ public class JumperAI : MonoBehaviour
 
         if (_rigidBody.velocity.y < 0)
         {
-            timeLeft = 15.0f;
+            timeLeft = 5.0f;
         }
         if (_rigidBody.velocity.y <= 0)
         {
@@ -69,7 +69,7 @@ public class JumperAI : MonoBehaviour
         {
             float moveHorizontal = Input.GetAxisRaw("Horizontal");
             _rigidBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-            _rigidBody.velocity = new Vector2(moveHorizontal * moveSpeed, _rigidBody.velocity.y);
+            _rigidBody.velocity = new Vector2(moveHorizontal * moveSpeed * (0.5f), _rigidBody.velocity.y);
             animator.SetBool("IsJumping", true);
         }
 
@@ -81,7 +81,7 @@ public class JumperAI : MonoBehaviour
         {
             float moveHorizontal = Input.GetAxisRaw("Horizontal");
             _rigidBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-            _rigidBody.velocity = new Vector2(-(moveHorizontal * moveSpeed), _rigidBody.velocity.y);
+            _rigidBody.velocity = new Vector2(-(moveHorizontal * moveSpeed * (0.5f)), _rigidBody.velocity.y);
             animator.SetBool("IsJumping", true);
         }
 
