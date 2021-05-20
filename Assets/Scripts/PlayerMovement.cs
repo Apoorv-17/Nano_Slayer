@@ -62,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
         // jump
         if(Input.GetButtonDown("Jump") && availableJumps > 0 && !touchingCiling)
         {
+            SoundManagerScript.PlaySound("jump");
             _rigidBody.AddForce(new Vector2(0f, jumpHeight), ForceMode2D.Impulse);
             availableJumps--;
 

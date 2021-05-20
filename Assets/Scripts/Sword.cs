@@ -14,6 +14,7 @@ public class Sword : MonoBehaviour
     // Start is called before the first frame update
     public void SlashStart()
     {
+        SoundManagerScript.PlaySound("swordSlash");
         _rigidbody = GetComponent<Rigidbody2D>();
         _rigidbody.position = _rigidbody.position + new Vector2(0.3f, 0);
         animator = GetComponent<Animator>();
@@ -22,6 +23,7 @@ public class Sword : MonoBehaviour
     }
     public void ThrowStart()
     {
+        SoundManagerScript.PlaySound("swordThrow");
         _rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         animator.SetTrigger("Sword_Cut");

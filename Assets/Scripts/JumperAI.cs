@@ -30,7 +30,6 @@ public class JumperAI : MonoBehaviour
     void Update()
     {
         timeLeft -= Time.deltaTime * 10;
-        Debug.Log(timeLeft);
 
         if (timeLeft < 0)
         {

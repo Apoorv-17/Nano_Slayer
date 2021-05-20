@@ -18,7 +18,11 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
-        Weapon.powerPoints = Weapon.powerPoints + weaponPoints;
+        SoundManagerScript.PlaySound("enemyDeath");
+        if(!Weapon.powerup1 && !Weapon.powerup2 && !Weapon.powerup3)
+        {
+            Weapon.powerPoints = Weapon.powerPoints + weaponPoints;
+        }
         if(Weapon.powerPoints>1000)
         {
             Weapon.powerPoints = 1000;

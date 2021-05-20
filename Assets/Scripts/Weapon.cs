@@ -11,9 +11,9 @@ public class Weapon : MonoBehaviour
     public GameObject swordPrefab;      // sword prefab
     public GameObject shotgunPrefab;    // shotgun prefab
     public GameObject machinegunPrefab; // machinegun prefab
-    private bool powerup1 = false;      // if shotgun powerup in use
-    private bool powerup2 = false;      // if Sword throw is in use
-    private bool powerup3 = false;      // if machinegun is in use
+    public static bool powerup1 = false;      // if shotgun powerup in use
+    public static bool powerup2 = false;      // if Sword throw is in use
+    public static bool powerup3 = false;      // if machinegun is in use
     private bool firelag = false;
     private bool rapidfire = false;
     public static int powerPoints = 1000;       // amount of weapon points
