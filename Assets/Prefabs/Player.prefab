@@ -233,6 +233,7 @@ MonoBehaviour:
   moveSpeed: 2
   crouchedMoveSpeed: 0.5
   jumpHeight: 5
+  wallJumpDistance: 25
   extraJumps: 1
   wallSlidingSpeed: 0.25
   groundCheck: {fileID: 5524533529048764277}
@@ -246,6 +247,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   firePoint: {fileID: 5524533527487291414}
+  shotgunPoint: {fileID: 0}
+  shotgunFirePoint: {fileID: 0}
 --- !u!114 &5524533528399091883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,8 +262,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 5524533527487291414}
+  ShotgunPoint: {fileID: 0}
+  ShotgunFirePoint: {fileID: 0}
   bulletPrefab: {fileID: 1686644200837447621, guid: 26ed9873e3b19ad4ba75fe74cc6ac04d, type: 3}
   swordPrefab: {fileID: 5222065692281784479, guid: 52f65693bd0614e4abf929dee5cc981d, type: 3}
+  shotgunPrefab: {fileID: 1562042015736076135, guid: 58002661e8fb1034d86076d27777dfde, type: 3}
+  machinegunPrefab: {fileID: 5162012955792898323, guid: 3ecb00aa39504194ba586a8b86cd5c78, type: 3}
   animator: {fileID: 5524533528399091876}
 --- !u!1 &5524533529048764278
 GameObject:

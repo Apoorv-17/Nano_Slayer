@@ -5,6 +5,7 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 10.0f;         // movement speed of player
     public float crouchedMoveSpeed = 5.0f;  // movement speed when crouched
     public float jumpHeight = 5.0f;        // jump force of the player
+    public float wallJumpDistance = 50f;
 
     public int extraJumps;                  // number of allowed extra jumps
 
@@ -21,8 +22,12 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask wallLayer;             // what is wall
 
     public Transform firePoint;             // bullet fire-point
+    public Transform shotgunPoint;
+    public Transform shotgunFirePoint;
 
     public static bool facingRight = true;
+
+    private float moveHorizontal;           // horizontal movement input
 
     private Animator animator;              // player animator 
     private Rigidbody2D _rigidBody;         // player rigidbody
@@ -52,26 +57,29 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // reset jumps if player is grounded
-        if(isGrounded)
-        {
+        if(isGrounded || wallSliding) {
             availableJumps = extraJumps;
         }
             
         // jump
-        if(Input.GetButtonDown("Jump") && availableJumps > 0 && !touchingCiling)
-        {
+        if(Input.GetButtonDown("Jump") && availableJumps > 0 && !touchingCiling && !wallSliding) {
             _rigidBody.AddForce(new Vector2(0f, jumpHeight), ForceMode2D.Impulse);
             availableJumps--;
 
             animator.SetBool("IsJumping", true); // triggers jump animation
         }
-        else if(Input.GetButtonDown("Jump") && availableJumps == 0 && isGrounded && !touchingCiling)
-        {
+        else if(Input.GetButtonDown("Jump") && availableJumps == 0 && isGrounded && !touchingCiling && !wallSliding) {
             _rigidBody.AddForce(new Vector2(0f, jumpHeight), ForceMode2D.Impulse);
 
             animator.SetBool("IsJumping", true); // triggers jump animation
         }
-        if(_rigidBody.velocity.y == 0) 
+        else if(Input.GetButtonDown("Jump") && wallSliding) {
+            _rigidBody.AddForce(new Vector2(0, jumpHeight), ForceMode2D.Impulse);
+            _rigidBody.transform.Translate(new Vector2(wallJumpDistance, 0) * Time.deltaTime);
+
+            animator.SetBool("IsJumping", true); // triggers jump animation
+        }
+        if(_rigidBody.velocity.y <= 0.01 && isGrounded ) 
         {
             animator.SetBool("IsJumping", false); // ends jumping animation
         }
@@ -85,7 +93,9 @@ public class PlayerMovement : MonoBehaviour
             boxColloider.offset = new Vector2(0.03f, -0.12f);
 
             firePoint.position = new Vector2(firePoint.position.x, firePoint.position.y - 0.13f);
-            
+            shotgunFirePoint.position = new Vector2(shotgunFirePoint.position.x, shotgunFirePoint.position.y - 0.13f);
+            shotgunPoint.position = new Vector2(shotgunPoint.position.x, shotgunPoint.position.y - 0.13f);
+
             animator.SetBool("IsCrouching", true);
         }
         else if((Input.GetButtonUp("Crouch") && !touchingCiling && isCrouching) || (!Input.GetButton("Crouch") && isCrouching && !touchingCiling))
@@ -96,6 +106,8 @@ public class PlayerMovement : MonoBehaviour
             boxColloider.offset = new Vector2(0.03f, -0.055f);
 
             firePoint.position = new Vector2(firePoint.position.x, firePoint.position.y + 0.13f);
+            shotgunFirePoint.position = new Vector2(shotgunFirePoint.position.x, shotgunFirePoint.position.y + 0.13f);
+            shotgunPoint.position = new Vector2(shotgunPoint.position.x, shotgunPoint.position.y + 0.13f);
 
             animator.SetBool("IsCrouching", false);
         }
@@ -124,10 +136,18 @@ public class PlayerMovement : MonoBehaviour
         if(isTouchingWall && !isGrounded) {
             if(!wallSliding) {
                 if(facingRight)
+                {
                     firePoint.position = new Vector2(firePoint.position.x + 0.03f, firePoint.position.y - 0.025f);
+                    shotgunFirePoint.position = new Vector2(shotgunFirePoint.position.x + 0.03f, shotgunFirePoint.position.y - 0.025f); ;
+                    shotgunPoint.position = new Vector2(shotgunPoint.position.x + 0.03f, shotgunPoint.position.y - 0.025f);
+                }
 
                 if(!facingRight)
+                {
                     firePoint.position = new Vector2(firePoint.position.x - 0.03f, firePoint.position.y - 0.025f);
+                    shotgunFirePoint.position = new Vector2(shotgunFirePoint.position.x - 0.03f, shotgunFirePoint.position.y - 0.025f);
+                    shotgunPoint.position = new Vector2(shotgunPoint.position.x - 0.03f, shotgunPoint.position.y - 0.025f);
+                }
             }
 
             wallSliding = true;
@@ -141,10 +161,18 @@ public class PlayerMovement : MonoBehaviour
         else {
             if(wallSliding) {
                 if(facingRight)
+                {
                     firePoint.position = new Vector2(firePoint.position.x - 0.03f, firePoint.position.y + 0.025f);
+                    shotgunFirePoint.position = new Vector2(shotgunFirePoint.position.x - 0.03f, shotgunFirePoint.position.y + 0.025f);
+                    shotgunPoint.position = new Vector2(shotgunPoint.position.x - 0.03f, shotgunPoint.position.y + 0.025f);
+                }
 
                 if(!facingRight)
+                {
                     firePoint.position = new Vector2(firePoint.position.x + 0.03f, firePoint.position.y + 0.025f);
+                    shotgunFirePoint.position = new Vector2(shotgunFirePoint.position.x + 0.03f, shotgunFirePoint.position.y + 0.025f);
+                    shotgunPoint.position = new Vector2(shotgunPoint.position.x + 0.03f, shotgunPoint.position.y + 0.025f);
+                }
             }
 
             wallSliding = false;
@@ -161,7 +189,7 @@ public class PlayerMovement : MonoBehaviour
             
 
         // movement
-        float moveHorizontal = Input.GetAxisRaw("Horizontal");
+        moveHorizontal = Input.GetAxisRaw("Horizontal");
         if(!isCrouching)
         {
             _rigidBody.velocity = new Vector2(moveHorizontal * moveSpeed, _rigidBody.velocity.y);

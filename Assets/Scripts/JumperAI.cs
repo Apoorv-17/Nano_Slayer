@@ -2,13 +2,17 @@
 
 public class JumperAI : MonoBehaviour
 {
-    public float speed = 15.0f;
+    public float moveSpeed = 3.0f;
+    public float crouchedMoveSpeed = 5.0f;
+    public float speed = 5.0f;
     public float jumpForce = 10.0f;
-    public float detectionRange = 5.0f;
+    public float detectionRange = 1.0f;
+    public float timeLeft = 15.0f;
+
     public Transform groundCheck;
     public LayerMask groundLayer;
     public Animator animator;
-    
+
     private Rigidbody2D _rigidBody; // jumper rigid body
     private Transform target;       // target transform
     private bool isNear;
@@ -25,13 +29,32 @@ public class JumperAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isNear)
+        timeLeft -= Time.deltaTime * 10;
+        //Debug.Log(timeLeft);
+
+        if (timeLeft < 0)
+        {
+            // if (_rigidBody.position.x - target.position.x > 0)
+            // {
+            //     jumpr();
+            // }
+            // else
+            // {
+            //     jumpl();
+            // }
             jump();
-        
-        if(_rigidBody.velocity.y <= 0) {
+        }
+
+        if (_rigidBody.velocity.y < 0)
+        {
+            timeLeft = 15.0f;
+        }
+        if (_rigidBody.velocity.y <= 0)
+        {
+
             animator.SetBool("IsJumping", false);
         }
-            
+
     }
 
     void FixedUpdate()
@@ -41,12 +64,35 @@ public class JumperAI : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
 
-    void jump() 
+    void jump()
     {
-        if(isGrounded) {
+        if (isGrounded)
+        {
+            //float moveHorizontal = Input.GetAxisRaw("Horizontal");
             _rigidBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+            float movedistance = Mathf.Abs(_rigidBody.position.x - target.position.x);
+            
+            Debug.Log(movedistance);
+
+            if(_rigidBody.position.x - target.position.x > 0)
+                _rigidBody.velocity = new Vector2(-movedistance * moveSpeed * (0.5f), _rigidBody.velocity.y);
+            else
+                _rigidBody.velocity = new Vector2(movedistance * moveSpeed * (0.5f), _rigidBody.velocity.y);
+
             animator.SetBool("IsJumping", true);
         }
-            
+
+    }
+
+    void jumpl()
+    {
+        if (isGrounded)
+        {
+            float moveHorizontal = Input.GetAxisRaw("Horizontal");
+            //_rigidBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+            //_rigidBody.velocity = new Vector2(-(moveHorizontal * moveSpeed * (0.5f)), _rigidBody.velocity.y);
+            //animator.SetBool("IsJumping", true);
+        }
+
     }
 }
