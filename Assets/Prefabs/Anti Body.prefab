@@ -43,8 +43,8 @@ GameObject:
   - component: {fileID: 3094104972083521047}
   - component: {fileID: 3094104972083521046}
   - component: {fileID: 3094104972083521045}
-  - component: {fileID: 3094104972083521040}
-  - component: {fileID: 6767827402303442051}
+  - component: {fileID: 3074960117575537463}
+  - component: {fileID: 1706429622369756016}
   m_Layer: 0
   m_Name: Anti Body
   m_TagString: Enemy
@@ -184,7 +184,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3094104972083521040
+--- !u!114 &3074960117575537463
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -193,28 +193,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 3094104972083521050}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24e4cd630d5088a43b52da928aa3c67c, type: 3}
+  m_Script: {fileID: 11500000, guid: ac12722d35c01a745a0f16298110c758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 250
-  deathEffect: {fileID: 1764386194386784117, guid: 668c834800729294f823e5d10ca4a703, type: 3}
---- !u!114 &6767827402303442051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3094104972083521050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cd6dfa7367a8ac4ca6230827482e8fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 15
-  jumpForce: 1.25
-  detectionRange: 1
+  moveSpeed: 3
+  crouchedMoveSpeed: 5
+  speed: 5
+  jumpForce: 3
+  detectionRange: 1.8
+  timeLeft: 15
   groundCheck: {fileID: 3977706379587351750}
   groundLayer:
     serializedVersion: 2
     m_Bits: 32768
   animator: {fileID: 3094104972083521045}
+--- !u!114 &1706429622369756016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3094104972083521050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ce0836a10daa574ca1c9827a7572d78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 175
+  weaponPoints: 500
+  deathEffect: {fileID: 1764386194386784117, guid: 668c834800729294f823e5d10ca4a703, type: 3}
