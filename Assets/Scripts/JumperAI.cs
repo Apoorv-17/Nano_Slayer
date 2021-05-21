@@ -30,18 +30,11 @@ public class JumperAI : MonoBehaviour
     void Update()
     {
         timeLeft -= Time.deltaTime * 10;
-        Debug.Log(timeLeft);
+        //Debug.Log(timeLeft);
 
-        if (timeLeft < 0)
+        if (timeLeft < 0 && isNear)
         {
-            if (_rigidBody.position.x - target.position.x > 0)
-            {
-                jumpr();
-            }
-            else
-            {
-                jumpl();
-            }
+            jump();
         }
 
         if (_rigidBody.velocity.y < 0)
@@ -63,25 +56,20 @@ public class JumperAI : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
 
-    void jumpr()
+    void jump()
     {
         if (isGrounded)
         {
-            float moveHorizontal = Input.GetAxisRaw("Horizontal");
+            SoundManagerScript.PlaySound("jump");
+            //float moveHorizontal = Input.GetAxisRaw("Horizontal");
             _rigidBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-            _rigidBody.velocity = new Vector2(moveHorizontal * moveSpeed * (0.5f), _rigidBody.velocity.y);
-            animator.SetBool("IsJumping", true);
-        }
+            float movedistance = Mathf.Abs(_rigidBody.position.x - target.position.x);
 
-    }
+            if (_rigidBody.position.x - target.position.x > 0)
+                _rigidBody.velocity = new Vector2(-movedistance * moveSpeed * (0.5f), _rigidBody.velocity.y);
+            else
+                _rigidBody.velocity = new Vector2(movedistance * moveSpeed * (0.5f), _rigidBody.velocity.y);
 
-    void jumpl()
-    {
-        if (isGrounded)
-        {
-            float moveHorizontal = Input.GetAxisRaw("Horizontal");
-            _rigidBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-            _rigidBody.velocity = new Vector2(-(moveHorizontal * moveSpeed * (0.5f)), _rigidBody.velocity.y);
             animator.SetBool("IsJumping", true);
         }
 

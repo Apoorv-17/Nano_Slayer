@@ -12,6 +12,7 @@ public class Bullet : MonoBehaviour
     
     public void FireStart(int i)
     {
+        SoundManagerScript.PlaySound("shoot");
         if (i == 1)
         {
             _rigidbody = GetComponent<Rigidbody2D>();
@@ -34,6 +35,7 @@ public class Bullet : MonoBehaviour
         Enemy virus = hitInfo.GetComponent<Enemy>();
         if(virus != null)
         {
+            SoundManagerScript.PlaySound("bulletImpact");
             virus.TakeDamage(damage);       // damage enemy
         }
 
