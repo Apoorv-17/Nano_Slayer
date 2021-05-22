@@ -32,11 +32,17 @@ public class Bullet : MonoBehaviour
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
         // if bullet hits an enemy
-        Enemy virus = hitInfo.GetComponent<Enemy>();
-        if(virus != null)
+        Enemy enemy = hitInfo.GetComponent<Enemy>();
+        if(enemy != null)
         {
             SoundManagerScript.PlaySound("bulletImpact");
-            virus.TakeDamage(damage);       // damage enemy
+            enemy.TakeDamage(damage);       // damage enemy
+        }
+
+        BarrelExplode barrel = hitInfo.GetComponent<BarrelExplode>();
+        if(barrel != null)
+        {
+            barrel.TakeDamage();
         }
 
         // if bullet hits a prop

@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public PlayerMovement movement;
+    public GameObject player;
     public float restartDelay = 1f;
     bool isGameOver = false;
 
@@ -14,7 +14,8 @@ public class GameManager : MonoBehaviour
             isGameOver = true;
 
             // disable player mavement
-            movement.enabled = false;
+            player.GetComponent<PlayerMovement>().enabled = false;
+            player.GetComponent<Animator>().enabled = false;
 
             // restart the level
             Invoke("Restart", restartDelay);
@@ -33,5 +34,8 @@ public class GameManager : MonoBehaviour
 
         // reset player direction
         PlayerMovement.facingRight = true;
+        //PlayerMovement.FindObjectOfType<Animator>().SetBool("IsJumping", false);
+        //PlayerMovement.FindObjectOfType<Animator>().SetFloat("Speed", 0f);
+        //PlayerMovement.Destroy(gameObject);
     }
 }
