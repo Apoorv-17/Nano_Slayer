@@ -18,7 +18,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Player
   - 
   - 
   - Wall
@@ -46,9 +46,6 @@ TagManager:
   - name: Background
     uniqueID: 3322919559
     locked: 0
-  - name: Lava
-    uniqueID: 3972838991
-    locked: 0
   - name: Ground
     uniqueID: 1494697053
     locked: 0
@@ -57,4 +54,7 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Lava
+    uniqueID: 3972838991
     locked: 0

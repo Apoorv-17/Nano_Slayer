@@ -167,3 +167,5 @@ MonoBehaviour:
   animator: {fileID: 5222065692281784478}
   damage: 70
   speed: 10
+  knockbackX: 5
+  knockbackY: 5
