@@ -38,16 +38,17 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\Player\Weapon\Sword.cs" />
+     <Compile Include="Assets\Scripts\LavaDeath.cs" />
      <Compile Include="Assets\Scripts\Player\Weapon\Weapon.cs" />
      <Compile Include="Assets\Scripts\Begin.cs" />
      <Compile Include="Assets\Scripts\SoundManagerScript.cs" />
      <Compile Include="Assets\Scripts\Player\Weapon\Machinegun.cs" />
-     <Compile Include="Assets\Scripts\Player\Weapon\Shotgun.cs" />
-     <Compile Include="Assets\Scripts\Player\Weapon\Bullet.cs" />
-     <Compile Include="Assets\Scripts\LavaDeath.cs" />
+     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Enemy\JumperAI.cs" />
-     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
+     <Compile Include="Assets\Scripts\Player\Weapon\Shotgun.cs" />
+     <Compile Include="Assets\Scripts\Player\Weapon\Bullet.cs" />
+     <Compile Include="Assets\Scripts\BarrelExplode.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2020.1.15f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
