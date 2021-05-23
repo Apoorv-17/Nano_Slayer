@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
         {
             isGameOver = true;
 
-            // disable player mavement
+            // disable player mavement and animation
             player.GetComponent<PlayerMovement>().enabled = false;
             player.GetComponent<Animator>().enabled = false;
 
@@ -34,8 +34,5 @@ public class GameManager : MonoBehaviour
 
         // reset player direction
         PlayerMovement.facingRight = true;
-        //PlayerMovement.FindObjectOfType<Animator>().SetBool("IsJumping", false);
-        //PlayerMovement.FindObjectOfType<Animator>().SetFloat("Speed", 0f);
-        //PlayerMovement.Destroy(gameObject);
     }
 }

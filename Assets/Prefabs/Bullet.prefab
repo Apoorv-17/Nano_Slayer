@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  punchMultiplierX: 1
-  punchMultiplierY: 0.5
+  knockbackX: 1
+  knockbackY: 5
   damage: 40
   impactEffect: {fileID: 2390212986216015807, guid: ed15e0a6751ad79449f8b02e8d8e9c92, type: 3}

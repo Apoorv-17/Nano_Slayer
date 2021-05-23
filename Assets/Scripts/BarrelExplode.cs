@@ -33,7 +33,12 @@ public class BarrelExplode : MonoBehaviour
 
         Destroy(gameObject);
 
-        GameObject explodeEffectObject = Instantiate(explodeEffect, transform.position, Quaternion.identity);
-        Destroy(explodeEffectObject, 0.4f);
+        GameObject explodeEffectBig = Instantiate(explodeEffect, transform.position, Quaternion.identity, explodeEffect.transform.parent);
+        explodeEffectBig.transform.localScale = new Vector2(1.5f, 1.5f);
+
+        GameObject explodeEffectSmall = Instantiate(explodeEffect, transform.position + new Vector3(-2f, 2f, 0f), Quaternion.identity);
+
+        Destroy(explodeEffectBig, 0.4f);
+        Destroy(explodeEffectSmall, 0.5f);
     }
 }
