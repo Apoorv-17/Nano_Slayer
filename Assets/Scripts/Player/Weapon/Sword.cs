@@ -61,11 +61,11 @@ public class Sword : MonoBehaviour
 
         BarrelExplode barrel = hitInfo.GetComponent<BarrelExplode>();
         if(barrel != null) {
-            barrel.TakeDamage();
+            barrel.TakeDamage(1);
         }
 
         // sword knockback 
-        if(hitInfo.tag == "Prop" || hitInfo.tag == "Enemy") {
+        if(hitInfo.tag == "Barrel" || hitInfo.tag == "Enemy") {
             Rigidbody2D prop = hitInfo.gameObject.GetComponent<Rigidbody2D>();
             if(PlayerMovement.facingRight)
                 prop.AddForce(new Vector2(knockbackX, knockbackY), ForceMode2D.Impulse);

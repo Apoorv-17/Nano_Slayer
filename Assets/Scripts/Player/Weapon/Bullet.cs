@@ -44,11 +44,11 @@ public class Bullet : MonoBehaviour
         BarrelExplode barrel = hitInfo.GetComponent<BarrelExplode>();
         if(barrel != null)
         {
-            barrel.TakeDamage();
+            barrel.TakeDamage(1);
         }
 
         // bullet knockback
-        if(hitInfo.tag == "Prop" || hitInfo.tag == "Enemy")
+        if(hitInfo.tag == "Barrel" || hitInfo.tag == "Enemy")
         {
             Rigidbody2D prop = hitInfo.gameObject.GetComponent<Rigidbody2D>();
             prop.AddForce(new Vector2(_rigidbody.velocity.x * knockbackX, knockbackY), ForceMode2D.Impulse);

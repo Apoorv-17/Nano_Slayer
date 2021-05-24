@@ -7,9 +7,9 @@ public class BarrelExplode : MonoBehaviour
     public int weaponPoints = 500;      // points given for powerup when distroyed
     public GameObject explodeEffect;    // death effect
 
-    public void TakeDamage()
+    public void TakeDamage(int damagePoints)
     {
-        hitPoints -= 1;
+        hitPoints -= damagePoints;
 
         if(hitPoints == 1) {
             GetComponent<Light2D>().enabled = true;
@@ -36,9 +36,14 @@ public class BarrelExplode : MonoBehaviour
         GameObject explodeEffectBig = Instantiate(explodeEffect, transform.position, Quaternion.identity, explodeEffect.transform.parent);
         explodeEffectBig.transform.localScale = new Vector2(1.5f, 1.5f);
 
-        GameObject explodeEffectSmall = Instantiate(explodeEffect, transform.position + new Vector3(-2f, 2f, 0f), Quaternion.identity);
+        GameObject explodeEffectSmall = Instantiate(explodeEffect, transform.position + new Vector3(-3f, 3f, 0f), Quaternion.identity);
 
         Destroy(explodeEffectBig, 0.4f);
         Destroy(explodeEffectSmall, 0.5f);
+    }
+    
+    private void OnDrawGizmosSelected()
+    {
+
     }
 }
