@@ -38,20 +38,25 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\Player\Weapon\Sword.cs" />
-     <Compile Include="Assets\Scripts\LavaDeath.cs" />
+     <Compile Include="Assets\Scripts\Map\Lava\LavaDeath.cs" />
+     <Compile Include="Assets\Scripts\Game Core\HealthUI.cs" />
      <Compile Include="Assets\Scripts\Player\Weapon\Weapon.cs" />
-     <Compile Include="Assets\Scripts\ExplosionEffect.cs" />
+     <Compile Include="Assets\Scripts\Map\Barrel\ExplosionEffect.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerHealth.cs" />
-     <Compile Include="Assets\Scripts\Begin.cs" />
-     <Compile Include="Assets\Scripts\SoundManagerScript.cs" />
+     <Compile Include="Assets\Scripts\Game Core\Begin.cs" />
+     <Compile Include="Assets\Scripts\Game Core\SoundManagerScript.cs" />
      <Compile Include="Assets\Scripts\Player\Weapon\Machinegun.cs" />
      <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
-     <Compile Include="Assets\Scripts\BarrelExplode.cs" />
-     <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Map\Barrel\BarrelExplode.cs" />
+     <Compile Include="Assets\Scripts\Game Core\GameManager.cs" />
      <Compile Include="Assets\Scripts\Enemy\JumperAI.cs" />
      <Compile Include="Assets\Scripts\Player\Weapon\Shotgun.cs" />
      <Compile Include="Assets\Scripts\Player\Weapon\Bullet.cs" />
-     <Compile Include="Assets\Scripts\HealthUI.cs" />
+     <Compile Include="Assets\Scripts\Enemy\Crab\CrabAI.cs" />
+     <Compile Include="Assets\Scripts\Map\Spawner\EnemySpawner.cs" />
+     <Compile Include="Assets\Scripts\Map\Spawner\SpawnController.cs" />
+     <Compile Include="Assets\Scripts\Enemy\Crab\CrabShoot.cs" />
+     <Compile Include="Assets\Scripts\Map\Spawner\PropSpawner.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2020.1.15f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

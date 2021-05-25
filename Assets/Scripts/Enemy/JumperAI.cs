@@ -14,7 +14,7 @@ public class JumperAI : MonoBehaviour
     public Transform hitCheck;
     public LayerMask playerLayer;
 
-    public static float timeLeft;
+    private static float timeLeft;
     private bool isNear;
     private bool isGrounded;
     private bool isJumping = false;
