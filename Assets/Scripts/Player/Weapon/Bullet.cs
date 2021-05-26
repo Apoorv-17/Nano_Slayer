@@ -39,6 +39,7 @@ public class Bullet : MonoBehaviour
         {
             SoundManagerScript.PlaySound("bulletImpact");
             enemy.TakeDamage(damage);       // damage enemy
+            Weapon.bulletHitPoits++;
         }
 
         BarrelExplode barrel = hitInfo.GetComponent<BarrelExplode>();

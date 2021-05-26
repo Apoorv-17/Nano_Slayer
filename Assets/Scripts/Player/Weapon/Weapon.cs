@@ -17,6 +17,8 @@ public class Weapon : MonoBehaviour
     private bool firelag = false;
     private bool rapidfire = false;
     public static int powerPoints = 1000;       // amount of weapon points
+    public static int gamePoints = 0;           // The points collected throughout the game
+    public static int bulletHitPoits = 0;       // Number of times bullet hit the enemy
 
     public Animator animator;           // for controlling animation
 
@@ -29,19 +31,19 @@ public class Weapon : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1) && powerPoints>=200 && !powerup1 && !powerup2 && !powerup3)
         {
             powerPoints = powerPoints - 200;
-            Debug.Log(powerPoints);
+            Debug.Log("Weapon Points: "+ powerPoints);
             StartCoroutine(EnableShotgun());
         }
         if (Input.GetKeyDown(KeyCode.Alpha2) && powerPoints >= 500 && !powerup1 && !powerup2 && !powerup3)
         {
             powerPoints = powerPoints - 500;
-            Debug.Log(powerPoints);
+            Debug.Log("Weapon Points: " + powerPoints);
             StartCoroutine(EnableSwordthrow());
         }
         if (Input.GetKeyDown(KeyCode.Alpha3) && powerPoints >= 800 && !powerup1 && !powerup2 && !powerup3)
         {
             powerPoints = powerPoints - 800;
-            Debug.Log(powerPoints);
+            Debug.Log("Weapon Points: " + powerPoints);
             rapidfire = false;
             StartCoroutine(EnableMachinegun());
         }

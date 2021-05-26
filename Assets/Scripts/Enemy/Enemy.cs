@@ -26,7 +26,8 @@ public class Enemy : MonoBehaviour
         if(Weapon.powerPoints>1000) {
             Weapon.powerPoints = 1000;
         }
-        
+        Debug.Log("Weapon Points: " + Weapon.powerPoints);
+        Weapon.gamePoints = Weapon.gamePoints + 30;         // add 30 points to the total game point.
         Destroy(gameObject);
 
         GameObject deathEffectObject = Instantiate(deathEffect, transform.position, Quaternion.identity);
